@@ -24,7 +24,7 @@ $(document).ready(function(){
 			videoMinute = '0'+videoMinute;
 		}
 		var videoSecond = Math.floor(videoTime % 60);
-		if(videoSecond){
+		if(videoSecond < 10){
 			videoSecond = '0'+videoSecond;
 		}
 		var VTime = videoMinute+':'+videoSecond;
