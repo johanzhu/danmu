@@ -17,10 +17,26 @@ $(document).ready(function(){
 		var day = date.getDate();
 		var hour = date.getHours();
 		var minute = date.getMinutes();
+		/*获取视频播放时间*/
+		var videoTime = $('video')[0].currentTime;
+		var videoMinute = Math.floor(videoTime/60);
+		if(videoMinute < 10){
+			videoMinute = '0'+videoMinute;
+		}
+		var videoSecond = Math.floor(videoTime % 60);
+		if(videoSecond){
+			videoSecond = '0'+videoSecond;
+		}
+		var VTime = videoMinute+':'+videoSecond;
 		/*定义本地存储来存储弹幕的DOM*/
-		localStorage.danmu = '<div class="history"><div class="time">10:48</div><div class="content">'+ text +'</div><div class="date">'+month+"-"+day+' '+hour+':'+minute+'</div></div>';
+		localStorage.danmu = '<div class="history"><div class="time">'+VTime+'</div><div class="content">'+ text +'</div><div class="date">'+month+"-"+day+' '+hour+':'+minute+'</div></div>';
 		$('.bullet').append(localStorage.getItem('danmu'));
 		localStorage.danmu = $('.bullet').html();
+		/*创建视频中的弹幕*/
+		var randomTop = RandomNum(20,170);
+		console.log(randomTop);
+		$('<div class="floatBullet" style="top:'+randomTop+'px'+'">'+text+'</div>').appendTo($('.border'));
+		/*清空输入框*/
 		$('.text').val("");
 	});
 	/*给input框添加回车事件，按回车等于点击！*/
@@ -30,9 +46,19 @@ $(document).ready(function(){
 			$('.shoot').trigger('click');
 		}
 	});
+	/*定义清除*/
+	$('.clean').click(function(){
+		$('.history').html('');
+		window.localStorage.clear();
+	});
+	/*待不全功能：历史弹幕，按日期显示弹幕，过长弹幕hover出现提示框*/
 	
 	
-	
-	
-	
-});
+	/*取范围内的数字（用于弹幕的随机高度）*/
+function RandomNum(Min,Max){
+var Range = Max - Min;
+var Rand = Math.random();   
+var num = Min + Math.round(Rand * Range);
+return num;
+}
+});/*JS结束*/

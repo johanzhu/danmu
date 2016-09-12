@@ -34,6 +34,8 @@
 	border: 1px solid #CCCCCC;
 	float: left;
 	margin: 10px 12px 2px;
+	position: relative;
+	overflow: hidden;
 }
 /*左侧结束*/
 .timeBar{
@@ -77,4 +79,21 @@
 }
 .date{
 	width: 40%;
+}
+
+.floatBullet{
+	position: absolute;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	font-weight: bold;
+	animation: 10s bullet linear;
+	-webkit-animation: 10s bullet linear;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	height: 22px;
+	overflow: hidden;
+}
+@keyframes bullet{
+	0%{left: 570px;}
+	100%{left:-1000px;}
 }
