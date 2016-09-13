@@ -67,16 +67,20 @@
 	float: left;
 	height: 20px;
 	font-family: "微软雅黑";
-	overflow: hidden;
 	box-sizing: border-box;
 	padding: 2px;
 }
 .time{
 	width: 20%;
+	position: relative;
 }
 .content{
 	width: 40%;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
 }
+.content:hover{overflow: visible;}
 .date{
 	width: 40%;
 }
@@ -96,4 +100,9 @@
 @keyframes bullet{
 	0%{left: 570px;}
 	100%{left:-1000px;}
+}
+.showAll{
+	position: absolute;
+	left: 0;
+	top: 100%;
 }
