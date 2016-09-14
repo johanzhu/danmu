@@ -82,18 +82,19 @@ $(document).ready(function(){
 /*给播放加监听事件，当开始播放后执行下面事件 = 根据存储的历史弹幕来发射屏幕上的弹幕*/     
 	$('video')[0].addEventListener('play',function(){
 		for(var i = 0;i < delayTimeArr.length;i++){
-	    	var  floatHistory = '<div class="floatBullet" style="top:'+randomTop+'px'+'">'+contentArr[i]+'</div>';
-	    	console.log(floatHistory);
+	    	//(由于要传递num所以这个就废弃了)var  floatHistory = '<div class="floatBullet" style="top:'+randomTop+'px'+'">'+contentArr[i]+'</div>';
+	    	//console.log(floatHistory);（下面创建闭包函数以读取for循环内的数值
 	    	/*延迟发射弹幕，延迟时间与弹幕内容读取自本地存储，也久是上述数组取的内容*/
+	    	(function(num){
 	    	setTimeout(function(){
-	    		$(floatHistory).appendTo($('.border'));
+	    		$('<div class="floatBullet" style="top:'+randomTop+'px'+'">'+contentArr[num]+'</div>').appendTo($('.border'));
 	    	},delayTimeArr[i]);
-		}   
+	        })(i);//闭包函数结束	
+	    	
+		}//for循环结束   
 	});
 	
-/*显示过长弹幕*/	
-//$('.content').append('<div class="showAll">测试内容</div>')
-	
+
 	
 			        
 /*取范围内的数字（用于弹幕的随机高度）*/
